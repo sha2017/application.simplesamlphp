@@ -19,13 +19,13 @@ Role Variables
 Example Playbook
 ----------------
 
-- name: SimpleSAMLphp
-  hosts: simplesamlhost
-  vars:
-    - ssp_task: sp
-    - ssp_base_url: "https://service.mydomain.com"
-  roles:
-    - simplesamlphp
+    - name: SimpleSAMLphp
+      hosts: simplesamlhost
+      vars:
+        - ssp_task: sp
+        - ssp_base_url: "https://service.mydomain.com"
+      roles:
+       - simplesamlphp
 
 TODO
 ----
