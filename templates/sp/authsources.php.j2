@@ -1,0 +1,11 @@
+<?php
+$config = array(                                                                
+    // An authentication source which can authenticate against OpenConext       
+    'default-sp' => array(                                                      
+        'saml:SP',                                                              
+        'privatekey'  => 'saml.key',                                            
+        'certificate' => 'saml.crt',                                            
+        'idp' => 'https://idp.mydomain.org/authentication/idp/metadata',      
+    ),                                                                          
+);                                                                              
+?>

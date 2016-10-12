@@ -1,0 +1,28 @@
+---
+- name: Download
+  get_url: url="{{ ssp_download_base_url }}/{{ ssp_tar_file }}" dest="{{ ssp_tar_location }}"
+  register: SSP
+
+- name: Unarchive it
+  unarchive: src="{{ ssp_tar_location }}" dest="{{ ssp_install_dir }}" copy=no
+
+- name: Link dir
+  file: path={{ ssp_dir }} src={{ ssp_unarchived_dir }} state=link
+
+- name: Create self-signed SSL cert
+  command: openssl req -new -nodes -x509 -subj "/C=NL/L=Amsterdam/O=MyOrganisation/CN=simpleSAMLphp" -days 3650 -keyout {{ ssp_cert_dir }}/saml.key -out {{ ssp_cert_dir }}/saml.crt -extensions v3_ca creates={{ ssp_cert_dir }}/saml.crt 
+
+- include: sp.yml
+  when: ssp_task == 'sp'
+
+- include: idp.yml
+  when: ssp_task == 'idp'
+
+- name: Set permissions; dirs
+  command: find {{ ssp_dir }} -type d -exec chmod 0755 {} \;
+
+- name: Set permissions; files
+  command: find {{ ssp_dir }} -type f -exec chmod 0644 {} \;
+
+- name: Set permissions; owner
+  file: dest={{ ssp_unarchived_dir }} owner=www-data group=www-data

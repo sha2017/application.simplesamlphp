@@ -1,0 +1,26 @@
+---
+#
+## Global defaults:
+ssp_version: "1.14.8"
+ssp_tmp_dir: "/tmp"
+ssp_install_dir: "/var"
+#
+## SimpleSAMLphp
+ssp_download_base_url: https://github.com/simplesamlphp/simplesamlphp/releases/download/v{{ ssp_version }}/
+ssp_tar_file: simplesamlphp-{{ ssp_version }}.tar.gz
+ssp_tar_location: "{{ ssp_tmp_dir }}/{{ ssp_tar_file }}"
+ssp_dir: "{{ ssp_install_dir }}/simplesamlphp"
+ssp_unarchived_dir: "{{ ssp_install_dir }}/simplesamlphp-{{ ssp_version }}"
+ssp_modules_dir: "{{ ssp_dir }}/modules"
+ssp_cert_dir: "{{ ssp_dir }}/cert"
+#
+## Default configuration
+ssp_config_base_url: "{{ ssp_server_address }}/simplesaml/"
+ssp_config_admin_password: "admin"
+ssp_config_secret_salt: "unsafe_please_change_this"
+ssp_config_technical_contact_name: "Administrator"
+ssp_config_technical_contact_email: "root@localhost"
+ssp_config_timezone: "Europe/Amsterdam"
+ssp_config_cookie_secure: true
+ssp_config_store_type: "sql"
+ssp_config_store_sql_dsn: "sqlite:{{ ssp_dir }}/sqlitedatabase.sq3"
