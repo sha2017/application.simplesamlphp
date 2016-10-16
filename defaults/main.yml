@@ -24,3 +24,4 @@ ssp_config_timezone: "Europe/Amsterdam"
 ssp_config_cookie_secure: true
 ssp_config_store_type: "sql"
 ssp_config_store_sql_dsn: "sqlite:{{ ssp_dir }}/sqlitedatabase.sq3"
+ssp_default_sp_idp: "https://idp.mydomain.org/authentication/idp/metadata"

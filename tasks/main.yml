@@ -25,4 +25,4 @@
   command: find {{ ssp_dir }} -type f -exec chmod 0644 {} \;
 
 - name: Set permissions; owner
-  file: dest={{ ssp_unarchived_dir }} owner=www-data group=www-data
+  file: dest={{ ssp_unarchived_dir }} owner=www-data group=www-data recurse=yes
